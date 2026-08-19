@@ -48,7 +48,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
   ]);
 
   const profile = computed<Profile>(() => data.value?.profile || {
-    name: 'Khonn Vy (Puvy)',
+    name: 'PUVY',
     title: 'IT Support Specialist | Full-Stack Web & App Developer',
     bio: 'Building reliable infrastructure and high-performance full-stack applications.',
     about_me_text: 'Experienced IT Professional and Software Engineer.',

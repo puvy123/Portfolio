@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         Profile::updateOrCreate(
             ['user_id' => $user->id],
             [
-                'name' => 'Khonn Vy (Puvy)',
+                'name' => 'PUVY',
                 'title' => 'IT Support Specialist | Full-Stack Web & App Developer',
                 'bio' => 'I am an IT Support Specialist and Full-Stack Developer passionate about building reliable, scalable, and user-friendly digital solutions. I specialize in IT support, web applications, backend systems, REST APIs, database management, and modern frontend development.',
                 'about_me_text' => 'With extensive hands-on experience spanning enterprise IT infrastructure, hardware troubleshooting, network administration, and modern software development, I bridge the gap between technical operations and elegant software engineering. Whether diagnosing server bottlenecks, configuring secure local and cloud networks, or architecting responsive full-stack applications with Vue 3, TypeScript, and Laravel, I focus on stability, security, and exceptional user experience.',
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
 
         // 3. Settings
         $settings = [
-            'site_name' => 'Khonn Vy - IT Specialist & Full-Stack Developer',
+            'site_name' => 'PUVY - IT Specialist & Full-Stack Developer',
             'site_tagline' => 'Bridging Hardware, Networks, and High-Performance Software',
             'contact_email' => 'khounvyvy@gmail.com',
             'contact_phone' => '+855 963454358',
