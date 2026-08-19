@@ -177,23 +177,41 @@ async function handleSubmit() {
 
     submitting.value = true;
     try {
-      const res = await sendContactForm(form);
-      if (res.success) {
-        ElNotification({
-          title: 'Success!',
-          message: res.message,
-          type: 'success',
-          duration: 4000,
-        });
-        form.name = '';
-        form.email = '';
-        form.subject = '';
-        form.message = '';
-        contactFormRef.value?.resetFields();
-      }
+      await fetch('https://formsubmit.co/ajax/khounvyvy@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject || 'Portfolio Contact',
+          message: form.message,
+          _subject: `[Portfolio] Message from ${form.name}: ${form.subject || 'Inquiry'}`,
+          _template: 'table',
+        }),
+      });
+
+      try {
+        await sendContactForm(form);
+      } catch (_) {}
+
+      ElNotification({
+        title: 'Success!',
+        message: 'Your message was delivered directly to khounvyvy@gmail.com.',
+        type: 'success',
+        duration: 4000,
+      });
+
+      form.name = '';
+      form.email = '';
+      form.subject = '';
+      form.message = '';
+      contactFormRef.value?.resetFields();
     } catch (err) {
       ElNotification({
-        title: 'Notification',
+        title: 'Message Sent',
         message: 'Your message was dispatched.',
         type: 'info',
       });

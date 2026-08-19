@@ -9,7 +9,7 @@
         Let's Connect
       </h1>
       <p class="text-xs sm:text-sm sm:text-base leading-relaxed" :class="store.isDark ? 'text-slate-400' : 'text-slate-600'">
-        Whether you have an urgent IT support requirement, an enterprise system migration, or a custom web app build — send a message below to reach my inbox directly.
+        Whether you have an urgent IT support requirement, an enterprise system migration, or a custom web app build — send a message below to reach my Gmail directly.
       </p>
     </div>
 
@@ -105,7 +105,7 @@
               Send a Direct Message
             </h3>
             <span class="text-[11px] font-mono text-cyan-400 flex items-center gap-1">
-              <Mail class="w-3 h-3" /> To: {{ contactEmail }}
+              <Mail class="w-3 h-3" /> Direct to: {{ contactEmail }}
             </span>
           </div>
 
@@ -175,7 +175,7 @@
                 class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs font-mono shadow-lg shadow-cyan-500/25 transition-all flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
               >
                 <Send v-if="!submitting" class="w-4 h-4" />
-                <span>{{ submitting ? 'Transmitting to Gmail...' : 'Send Direct Message to Gmail' }}</span>
+                <span>{{ submitting ? 'Sending directly to your Gmail...' : 'Send Message to khounvyvy@gmail.com' }}</span>
               </button>
 
               <div class="text-center">
@@ -183,7 +183,7 @@
                   :href="mailtoLink"
                   class="text-[11px] font-mono text-cyan-400 hover:underline inline-flex items-center gap-1 opacity-85 hover:opacity-100"
                 >
-                  <Mail class="w-3 h-3" /> Or click to open your Gmail / Email client directly
+                  <Mail class="w-3 h-3" /> Or click here to send directly via Gmail App
                 </a>
               </div>
             </div>
@@ -233,16 +233,44 @@ onMounted(() => {
 async function handleSubmit() {
   submitting.value = true;
   statusMessage.value = '';
+  
   try {
-    const res = await store.submitContact(form.value);
-    isSuccess.value = true;
-    statusMessage.value = res.message || `Thank you! Your message has been sent directly to ${contactEmail}.`;
-    form.value = { name: '', email: '', subject: '', message: '' };
+    // 1. Direct Cloud Email Delivery using FormSubmit to khounvyvy@gmail.com
+    const response = await fetch(`https://formsubmit.co/ajax/${contactEmail}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        name: form.value.name,
+        email: form.value.email,
+        subject: form.value.subject || 'New Portfolio Inquiry',
+        message: form.value.message,
+        _subject: `[Portfolio] Message from ${form.value.name}: ${form.value.subject || 'Inquiry'}`,
+        _template: 'table',
+      }),
+    });
+
+    const data = await response.json();
+
+    // Also attempt local API recording if available
+    try {
+      await store.submitContact(form.value);
+    } catch (_) {}
+
+    if (response.ok || data.success === 'true' || data.success === true) {
+      isSuccess.value = true;
+      statusMessage.value = `✓ Thank you ${form.value.name}! Your message was delivered directly to ${contactEmail}.`;
+      form.value = { name: '', email: '', subject: '', message: '' };
+    } else {
+      throw new Error(data.message || 'Submission failed');
+    }
   } catch (err: any) {
-    // If backend is offline or static on Vercel, open direct mailto fallback seamlessly
+    // Fallback directly to mailto
     window.location.href = mailtoLink.value;
     isSuccess.value = true;
-    statusMessage.value = `Opening your email client to send directly to ${contactEmail}...`;
+    statusMessage.value = `Opening your email client to dispatch message directly to ${contactEmail}...`;
   } finally {
     submitting.value = false;
   }
