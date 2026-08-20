@@ -1,6 +1,6 @@
 FROM php:8.3-cli-alpine
 
-# Install system dependencies and PHP extensions
+# Install system dependencies and required PHP extensions
 RUN apk add --no-cache \
     git \
     curl \
@@ -9,29 +9,35 @@ RUN apk add --no-cache \
     zip \
     unzip \
     sqlite \
-    sqlite-dev
+    sqlite-dev \
+    oniguruma-dev
 
-RUN docker-php-ext-install pdo pdo_sqlite pcntl bcmath
+RUN docker-php-ext-install pdo pdo_sqlite pcntl bcmath mbstring
 
 # Copy Composer from official image
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-# Copy backend application
+# Copy backend files
 COPY backend/ /app/
+COPY entrypoint.sh /app/entrypoint.sh
 
-# Install Composer dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Prepare storage permissions and database
-RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/logs \
-    && chmod -R 777 storage bootstrap/cache \
+# Create required Laravel directory structure and dummy .env
+RUN mkdir -p storage/framework/sessions \
+             storage/framework/views \
+             storage/framework/cache/data \
+             storage/logs \
+             bootstrap/cache \
+             database \
+    && chmod -R 777 storage bootstrap/cache database \
     && touch database/database.sqlite \
-    && php artisan key:generate --force \
-    && php artisan migrate --force --seed
+    && chmod +x /app/entrypoint.sh
+
+# Install composer packages without triggering boot scripts during build
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 ENV PORT=8000
 EXPOSE 8000
 
-CMD ["sh", "-c", "php artisan serve --host=0.0.0.0 --port=${PORT}"]
+ENTRYPOINT ["/app/entrypoint.sh"]
