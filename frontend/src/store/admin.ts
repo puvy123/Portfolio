@@ -45,6 +45,12 @@ export const useAdminStore = defineStore('admin', () => {
   const profile = ref<any>({});
   const loading = ref(false);
 
+  function clearPublicCache() {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('puvy_portfolio_cache');
+    }
+  }
+
   // Authentication
   async function login(email: string, pass: string): Promise<boolean> {
     try {
@@ -103,11 +109,13 @@ export const useAdminStore = defineStore('admin', () => {
     } else {
       await createAdminResource('projects', project);
     }
+    clearPublicCache();
     await loadProjects();
   }
 
   async function deleteProject(id: number) {
     await deleteAdminResource('projects', id);
+    clearPublicCache();
     await loadProjects();
   }
 
@@ -128,11 +136,13 @@ export const useAdminStore = defineStore('admin', () => {
     } else {
       await createAdminResource('skills', skill);
     }
+    clearPublicCache();
     await loadSkills();
   }
 
   async function deleteSkill(id: number) {
     await deleteAdminResource('skills', id);
+    clearPublicCache();
     await loadSkills();
   }
 
@@ -153,11 +163,13 @@ export const useAdminStore = defineStore('admin', () => {
     } else {
       await createAdminResource('services', service);
     }
+    clearPublicCache();
     await loadServices();
   }
 
   async function deleteService(id: number) {
     await deleteAdminResource('services', id);
+    clearPublicCache();
     await loadServices();
   }
 
@@ -178,11 +190,13 @@ export const useAdminStore = defineStore('admin', () => {
     } else {
       await createAdminResource('experiences', exp);
     }
+    clearPublicCache();
     await loadExperiences();
   }
 
   async function deleteExperience(id: number) {
     await deleteAdminResource('experiences', id);
+    clearPublicCache();
     await loadExperiences();
   }
 
@@ -203,11 +217,13 @@ export const useAdminStore = defineStore('admin', () => {
     } else {
       await createAdminResource('educations', edu);
     }
+    clearPublicCache();
     await loadEducations();
   }
 
   async function deleteEducation(id: number) {
     await deleteAdminResource('educations', id);
+    clearPublicCache();
     await loadEducations();
   }
 
@@ -228,11 +244,13 @@ export const useAdminStore = defineStore('admin', () => {
     } else {
       await createAdminResource('certifications', cert);
     }
+    clearPublicCache();
     await loadCertifications();
   }
 
   async function deleteCertification(id: number) {
     await deleteAdminResource('certifications', id);
+    clearPublicCache();
     await loadCertifications();
   }
 
@@ -253,11 +271,13 @@ export const useAdminStore = defineStore('admin', () => {
     } else {
       await createAdminResource('blog', post);
     }
+    clearPublicCache();
     await loadBlogPosts();
   }
 
   async function deleteBlogPost(id: number) {
     await deleteAdminResource('blog', id);
+    clearPublicCache();
     await loadBlogPosts();
   }
 
@@ -278,11 +298,13 @@ export const useAdminStore = defineStore('admin', () => {
     } else {
       await createAdminResource('testimonials', t);
     }
+    clearPublicCache();
     await loadTestimonials();
   }
 
   async function deleteTestimonial(id: number) {
     await deleteAdminResource('testimonials', id);
+    clearPublicCache();
     await loadTestimonials();
   }
 
@@ -324,11 +346,13 @@ export const useAdminStore = defineStore('admin', () => {
 
   async function saveProfile(payload: any) {
     await updateAdminProfile(payload);
+    clearPublicCache();
     await loadSettingsAndProfile();
   }
 
   async function saveSettings(payload: Record<string, any>) {
     await saveAdminSettings(payload);
+    clearPublicCache();
     await loadSettingsAndProfile();
   }
 

@@ -5,7 +5,8 @@ import { fetchPortfolioData, fetchBlogPosts, fetchBlogPostBySlug, sendContactFor
 
 export const usePortfolioStore = defineStore('portfolio', () => {
   const loading = ref(false);
-  const data = ref<PortfolioData | null>(null);
+  const cachedData = typeof window !== 'undefined' ? localStorage.getItem('puvy_portfolio_cache') : null;
+  const data = ref<PortfolioData | null>(cachedData ? JSON.parse(cachedData) : null);
   const activeProjectTag = ref<string>('All');
   const activeSkillCategory = ref<string>('All');
   const selectedProject = ref<Project | null>(null);
@@ -115,12 +116,16 @@ export const usePortfolioStore = defineStore('portfolio', () => {
   });
 
   async function loadPortfolio() {
-    loading.value = true;
     try {
       const res = await fetchPortfolioData();
-      data.value = res.data;
+      if (res && res.data) {
+        data.value = res.data;
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('puvy_portfolio_cache', JSON.stringify(res.data));
+        }
+      }
     } catch (err) {
-      console.error('Failed to load portfolio data from backend API:', err);
+      console.warn('Backend API warming up, using current state:', err);
     } finally {
       loading.value = false;
     }
