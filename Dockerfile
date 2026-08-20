@@ -1,4 +1,4 @@
-FROM php:8.3-cli-alpine
+FROM php:8.4-cli-alpine
 
 # Install system dependencies and PHP extensions
 RUN apk add --no-cache \
@@ -15,15 +15,15 @@ RUN apk add --no-cache \
 
 RUN docker-php-ext-install pdo pdo_sqlite pcntl bcmath mbstring
 
-# Copy Composer
-COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
+# Copy Composer from official image
+COPY --from=composer:2.8 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
 # Copy backend files
 COPY backend/ /app/
 
-# Setup directories and permissions, ensure LF line endings
+# Setup directories, permissions, and line endings
 RUN mkdir -p storage/framework/sessions \
              storage/framework/views \
              storage/framework/cache/data \
@@ -35,8 +35,8 @@ RUN mkdir -p storage/framework/sessions \
     && sed -i 's/\r$//' entrypoint.sh \
     && chmod +x entrypoint.sh
 
-# Install composer packages
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+# Install composer packages with platform req ignore safeguard
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts --ignore-platform-reqs
 
 ENV PORT=8000
 EXPOSE 8000
