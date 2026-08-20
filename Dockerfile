@@ -1,6 +1,6 @@
 FROM php:8.3-cli-alpine
 
-# Install system dependencies and required PHP extensions
+# Install system dependencies and PHP extensions
 RUN apk add --no-cache \
     git \
     curl \
@@ -10,20 +10,20 @@ RUN apk add --no-cache \
     unzip \
     sqlite \
     sqlite-dev \
-    oniguruma-dev
+    oniguruma-dev \
+    sed
 
 RUN docker-php-ext-install pdo pdo_sqlite pcntl bcmath mbstring
 
-# Copy Composer from official image
+# Copy Composer
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
 # Copy backend files
 COPY backend/ /app/
-COPY entrypoint.sh /app/entrypoint.sh
 
-# Create required Laravel directory structure and dummy .env
+# Setup directories and permissions, ensure LF line endings
 RUN mkdir -p storage/framework/sessions \
              storage/framework/views \
              storage/framework/cache/data \
@@ -32,12 +32,13 @@ RUN mkdir -p storage/framework/sessions \
              database \
     && chmod -R 777 storage bootstrap/cache database \
     && touch database/database.sqlite \
-    && chmod +x /app/entrypoint.sh
+    && sed -i 's/\r$//' entrypoint.sh \
+    && chmod +x entrypoint.sh
 
-# Install composer packages without triggering boot scripts during build
+# Install composer packages
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 ENV PORT=8000
 EXPOSE 8000
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+CMD ["/bin/sh", "/app/entrypoint.sh"]
