@@ -4,7 +4,7 @@ import type { PortfolioData, Project, Skill, Experience, Education, Certificatio
 import { fetchPortfolioData, fetchBlogPosts, fetchBlogPostBySlug, sendContactForm } from '../services/api';
 
 export const usePortfolioStore = defineStore('portfolio', () => {
-  const loading = ref(true);
+  const loading = ref(false);
   const data = ref<PortfolioData | null>(null);
   const activeProjectTag = ref<string>('All');
   const activeSkillCategory = ref<string>('All');

@@ -85,10 +85,8 @@
         :class="store.isDark ? 'border-slate-900 text-slate-500' : 'border-slate-200 text-slate-500'"
       >
         <p>© {{ new Date().getFullYear() }} {{ store.profile.name }}. All Rights Reserved. Built with Vue 3, Tailwind CSS & Laravel 11.</p>
-        <div class="flex items-center gap-4">
-          <router-link to="/admin/login" class="hover:text-cyan-400 flex items-center gap-1 opacity-70 hover:opacity-100 transition-opacity">
-            <Shield class="w-3 h-3" /> Admin Login
-          </router-link>
+        <div class="flex items-center gap-4 text-[11px] text-slate-500">
+          <span>Cambodia 🇰🇭</span>
         </div>
       </div>
     </div>
@@ -97,7 +95,7 @@
 
 <script setup lang="ts">
 import { usePortfolioStore } from '../../store/portfolio';
-import { Mail, Phone, MapPin, Shield, Github, Linkedin, Send, Twitter, Facebook, Globe, Share2 } from 'lucide-vue-next';
+import { Mail, Phone, MapPin, Github, Linkedin, Send, Twitter, Facebook, Globe, Share2 } from 'lucide-vue-next';
 
 const store = usePortfolioStore();
 </script>
