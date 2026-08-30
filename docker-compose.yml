@@ -1,0 +1,44 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: puvy-portfolio-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=PUVY Portfolio API
+      - APP_ENV=local
+      - APP_KEY=base64:kSLzfg7LqIj6+ZGGLMR6jAVnq/Mw4iFnxJgmC8Fe2fo=
+      - APP_DEBUG=true
+      - DB_CONNECTION=sqlite
+      - DB_DATABASE=/app/database/database.sqlite
+      - PORT=8000
+    volumes:
+      - ./backend/database:/app/database
+      - ./backend/storage:/app/storage
+    networks:
+      - portfolio-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: puvy-portfolio-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api/v1
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge
