@@ -32,6 +32,10 @@
   }
 }
 
+.font-poppins {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
 /* Coder Grid / Matrix Background Texture */
 .bg-coder-grid {
   background-size: 32px 32px;

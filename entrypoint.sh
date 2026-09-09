@@ -1,15 +1,19 @@
 #!/bin/sh
 set -e
 
-mkdir -p database
+# Clear any cached provider/service files from host machine
+rm -f bootstrap/cache/packages.php bootstrap/cache/services.php bootstrap/cache/config.php bootstrap/cache/routes-*.php
 
-# Only seed if database is new
+mkdir -p database storage/framework/sessions storage/framework/views storage/framework/cache/data storage/logs bootstrap/cache
+chmod -R 777 database storage bootstrap/cache
+
+# Only seed if database is empty
 if [ ! -s database/database.sqlite ]; then
   touch database/database.sqlite
-  chmod -R 777 database storage bootstrap/cache
+  php artisan package:discover --ansi || true
   php artisan migrate --force --seed || true
 else
-  chmod -R 777 database storage bootstrap/cache
+  php artisan package:discover --ansi || true
   php artisan migrate --force || true
 fi
 
