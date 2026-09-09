@@ -9,11 +9,13 @@
       
       <!-- Brand & Header -->
       <div class="text-center space-y-3">
-        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-mono font-bold text-lg mx-auto shadow-lg shadow-cyan-500/20">
-          &lt;/&gt;
-        </div>
+        <img
+          src="/logo.png"
+          alt="PuvY Logo"
+          class="w-14 h-14 object-contain rounded-2xl mx-auto shadow-lg"
+        />
         <div class="space-y-1">
-          <h1 class="text-2xl font-bold text-slate-100 tracking-tight">Admin Portal</h1>
+          <h1 class="text-2xl font-bold text-slate-100 tracking-tight">PuvY Admin Portal</h1>
           <p class="text-xs text-slate-400 font-mono">Sign in to manage your portfolio</p>
         </div>
       </div>

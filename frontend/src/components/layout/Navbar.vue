@@ -6,14 +6,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <!-- Coder Brand Logo -->
       <router-link to="/" class="flex items-center gap-3 group">
-        <div class="w-9 h-9 rounded-lg flex items-center justify-center font-mono font-bold text-sm transition-transform duration-200 group-hover:scale-105 border"
-          :class="store.isDark ? 'bg-[#0b1120] border-emerald-500/40 text-emerald-400 shadow-sm shadow-emerald-500/20' : 'bg-slate-900 border-slate-800 text-emerald-400'"
-        >
-          &gt;_
-        </div>
+        <img
+          src="/logo.png"
+          alt="PuvY Logo"
+          class="w-9 h-9 object-contain rounded-lg transition-transform duration-200 group-hover:scale-105"
+        />
         <div>
           <span class="font-mono font-bold text-base tracking-tight" :class="store.isDark ? 'text-slate-100' : 'text-slate-900'">
-            {{ store.profile.name }}<span class="text-emerald-400">.dev</span>
+            PuvY<span class="text-emerald-400">.dev</span>
           </span>
           <div class="flex items-center gap-1.5 text-[11px] font-mono text-emerald-400">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>

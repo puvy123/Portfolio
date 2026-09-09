@@ -8,13 +8,13 @@
         <!-- Col 1: Bio -->
         <div class="space-y-4 md:col-span-2">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center font-mono font-bold text-xs border"
-              :class="store.isDark ? 'bg-[#0b1120] border-emerald-500/40 text-emerald-400' : 'bg-slate-900 border-slate-800 text-emerald-400'"
-            >
-              &gt;_
-            </div>
+            <img
+              src="/logo.png"
+              alt="PuvY Logo"
+              class="w-8 h-8 object-contain rounded-lg"
+            />
             <span class="font-bold text-base font-mono" :class="store.isDark ? 'text-slate-100' : 'text-slate-900'">
-              {{ store.profile.name }}<span class="text-emerald-400">.dev</span>
+              PuvY<span class="text-emerald-400">.dev</span>
             </span>
           </div>
           <p class="text-xs max-w-md leading-relaxed" :class="store.isDark ? 'text-slate-400' : 'text-slate-600'">
