@@ -1,46 +1,53 @@
 <template>
-  <section id="terminal" class="py-20 bg-slate-950/70 relative">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="terminal" class="py-12 relative">
+    <div class="max-w-4xl mx-auto">
       
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto space-y-4 mb-10">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs font-semibold">
-          <Terminal class="w-3.5 h-3.5" /> Developer Shell
+      <div class="text-center max-w-2xl mx-auto space-y-2 mb-8">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-mono font-medium"
+          :class="store.isDark ? 'bg-zinc-900 border-zinc-800 text-zinc-300' : 'bg-zinc-100 border-zinc-200 text-zinc-700'"
+        >
+          <Terminal class="w-3.5 h-3.5 text-blue-500" /> CLI Terminal
         </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-          Interactive <span class="gradient-text-cyan-violet">CLI Terminal</span>
+        <h2 class="text-2xl sm:text-3xl font-bold" :class="store.isDark ? 'text-zinc-100' : 'text-zinc-900'">
+          Interactive Shell
         </h2>
-        <p class="text-slate-400 text-base">
-          Prefer command-line interfaces? Type commands below or click quick shortcuts to inspect portfolio details.
+        <p class="text-xs sm:text-sm" :class="store.isDark ? 'text-zinc-400' : 'text-zinc-600'">
+          Prefer command-line interfaces? Type commands below or click quick shortcuts.
         </p>
       </div>
 
       <!-- Quick Command Buttons -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-6 font-mono text-xs">
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-4 font-mono text-xs">
         <button
           v-for="cmd in ['help', 'bio', 'skills', 'projects', 'experience', 'contact', 'theme', 'sudo hire-me']"
           :key="cmd"
           @click="handleQuickCommand(cmd)"
-          class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-cyan-400 hover:border-cyan-500/50 hover:bg-slate-800 transition-all cursor-pointer"
+          class="px-2.5 py-1 rounded-lg border transition-colors duration-150 cursor-pointer"
+          :class="store.isDark
+            ? 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:border-zinc-700 hover:text-white'
+            : 'bg-white border-zinc-200 text-zinc-700 hover:border-zinc-300 hover:text-zinc-900 shadow-xs'"
         >
           $&nbsp;{{ cmd }}
         </button>
       </div>
 
       <!-- Terminal Window Box -->
-      <div class="rounded-2xl border border-slate-800 bg-slate-950 shadow-2xl overflow-hidden cyber-glow-cyan">
+      <div class="rounded-2xl border bg-zinc-950 shadow-xl overflow-hidden"
+        :class="store.isDark ? 'border-zinc-800' : 'border-zinc-300'"
+      >
         
         <!-- Header Bar -->
-        <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between font-mono text-xs">
+        <div class="px-4 py-3 bg-zinc-900 border-b border-zinc-800 flex items-center justify-between font-mono text-xs">
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
-            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
-            <span class="ml-2 text-slate-400 hidden sm:inline">bash - puvy@portfolio:~</span>
+            <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+            <span class="ml-2 text-zinc-400 hidden sm:inline">bash - puvy@portfolio:~</span>
           </div>
           <button
             @click="store.executeTerminalCommand('clear')"
-            class="text-slate-400 hover:text-rose-400 transition-colors flex items-center gap-1"
+            class="text-zinc-400 hover:text-red-400 transition-colors flex items-center gap-1 cursor-pointer"
             title="Clear Terminal Output"
           >
             <Trash2 class="w-3.5 h-3.5" /> clear
@@ -50,14 +57,14 @@
         <!-- Terminal Logs Area -->
         <div
           ref="terminalLogContainer"
-          class="p-6 font-mono text-xs sm:text-sm max-h-96 overflow-y-auto space-y-4 text-slate-300 leading-relaxed"
+          class="p-6 font-mono text-xs sm:text-sm max-h-80 overflow-y-auto space-y-3 text-zinc-300 leading-relaxed"
         >
           <div v-for="log in store.terminalLogs" :key="log.id" class="space-y-1">
             <!-- Command prompt line -->
-            <div class="flex items-center gap-2 text-slate-400">
-              <span class="text-emerald-400">puvy@portfolio</span>:<span class="text-cyan-400">~</span>$&nbsp;
-              <span class="text-slate-100 font-bold">{{ log.command }}</span>
-              <span class="text-[10px] text-slate-600 ml-auto">{{ log.timestamp }}</span>
+            <div class="flex items-center gap-2 text-zinc-400">
+              <span class="text-emerald-400">puvy@portfolio</span>:<span class="text-blue-400">~</span>$&nbsp;
+              <span class="text-zinc-100 font-bold">{{ log.command }}</span>
+              <span class="text-[10px] text-zinc-600 ml-auto">{{ log.timestamp }}</span>
             </div>
 
             <!-- Output block -->
@@ -69,17 +76,17 @@
         </div>
 
         <!-- Input Line -->
-        <form @submit.prevent="submitCommand" class="p-4 bg-slate-900/90 border-t border-slate-800 flex items-center gap-3">
-          <span class="text-emerald-400 font-mono font-bold text-sm">puvy@portfolio:~$</span>
+        <form @submit.prevent="submitCommand" class="p-3.5 bg-zinc-900/90 border-t border-zinc-800 flex items-center gap-3">
+          <span class="text-emerald-400 font-mono font-bold text-xs sm:text-sm">puvy@portfolio:~$</span>
           <input
             v-model="inputCommand"
             type="text"
             placeholder="Type 'help', 'skills', 'projects', 'contact'..."
-            class="flex-1 bg-transparent border-none outline-none font-mono text-sm text-cyan-300 placeholder-slate-600 focus:ring-0"
+            class="flex-1 bg-transparent border-none outline-none font-mono text-xs sm:text-sm text-zinc-200 placeholder-zinc-600 focus:ring-0"
           />
           <button
             type="submit"
-            class="px-4 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono font-bold text-xs transition-colors"
+            class="px-3 py-1.5 rounded-lg bg-white text-zinc-950 hover:bg-zinc-200 font-mono font-bold text-xs transition-colors cursor-pointer"
           >
             Run ↵
           </button>
@@ -123,15 +130,15 @@ function scrollToBottom() {
 function getLogStyle(type: string) {
   switch (type) {
     case 'success':
-      return 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-300';
+      return 'bg-emerald-950/40 border border-emerald-800/40 text-emerald-300';
     case 'warning':
-      return 'bg-amber-500/10 border border-amber-500/20 text-amber-300';
+      return 'bg-amber-950/40 border border-amber-800/40 text-amber-300';
     case 'error':
-      return 'bg-rose-500/10 border border-rose-500/20 text-rose-300';
+      return 'bg-red-950/40 border border-red-800/40 text-red-300';
     case 'system':
-      return 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-300';
+      return 'bg-blue-950/40 border border-blue-800/40 text-blue-300';
     default:
-      return 'bg-slate-900 border border-slate-800 text-slate-300';
+      return 'bg-zinc-900/80 border border-zinc-800 text-zinc-300';
   }
 }
 </script>
