@@ -2,25 +2,23 @@
 
 @layer base {
   :root {
-    --bg-primary: #fafafa;
-    --bg-secondary: #f4f4f5;
-    --bg-card: rgba(255, 255, 255, 0.9);
-    --text-primary: #09090b;
-    --text-secondary: #71717a;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
     --accent-primary: #2563eb;
-    --accent-hover: #1d4ed8;
-    --border-color: #e4e4e7;
+    --border-color: #e2e8f0;
   }
 
   html.dark {
-    --bg-primary: #09090b;
-    --bg-secondary: #18181b;
-    --bg-card: rgba(24, 24, 27, 0.7);
-    --text-primary: #fafafa;
-    --text-secondary: #a1a1aa;
+    --bg-primary: #030712;
+    --bg-secondary: #0b0f19;
+    --bg-card: rgba(15, 23, 42, 0.7);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
     --accent-primary: #3b82f6;
-    --accent-hover: #60a5fa;
-    --border-color: #27272a;
+    --border-color: rgba(255, 255, 255, 0.08);
   }
 
   body {
@@ -32,9 +30,24 @@
   }
 }
 
-/* Modern Minimalist Glass Panel */
+/* Modern Grid Background Texture */
+.bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.light .bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+}
+
+/* Glassmorphism & Modern Panels */
 .glass-panel {
-  background: rgba(24, 24, 27, 0.65);
+  background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -44,16 +57,35 @@
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.06);
 }
 
-/* Subtle Clean Shadows */
-.card-shadow {
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+/* Modern Cards with Subtle Lift on Hover */
+.modern-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dark .card-shadow {
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+.modern-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Vibrant Modern Gradient Text */
+.gradient-text-hero {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-blue {
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .gradient-text-blue {
+  background: linear-gradient(135deg, #60a5fa 0%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Custom Scrollbar */
@@ -67,12 +99,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(161, 161, 170, 0.25);
+  background: rgba(148, 163, 184, 0.25);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(161, 161, 170, 0.45);
+  background: rgba(148, 163, 184, 0.45);
 }
 
 /* Typing cursor animation */
@@ -87,21 +119,21 @@
 
 /* Element Plus Customization Overrides */
 .el-dialog {
-  background: #18181b !important;
-  border: 1px solid #27272a !important;
+  background: #0f172a !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 1.25rem !important;
-  color: #fafafa !important;
+  color: #f8fafc !important;
 }
 
 .el-dialog__title {
-  color: #fafafa !important;
+  color: #f8fafc !important;
   font-weight: 600 !important;
 }
 
 .el-input__wrapper, .el-textarea__inner {
-  background-color: #09090b !important;
-  box-shadow: 0 0 0 1px #27272a inset !important;
-  color: #fafafa !important;
+  background-color: #030712 !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
+  color: #f8fafc !important;
   border-radius: 0.75rem !important;
 }
 
@@ -118,9 +150,4 @@
 
 .el-button--primary:hover {
   background: #1d4ed8 !important;
-}
-
-.el-tag {
-  border-radius: 0.5rem !important;
-  font-weight: 500 !important;
 }
