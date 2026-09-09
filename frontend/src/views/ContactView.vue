@@ -1,17 +1,17 @@
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 font-mono">
     <!-- Header -->
     <div class="text-center max-w-3xl mx-auto space-y-3">
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-mono font-medium"
-        :class="store.isDark ? 'bg-zinc-900 border-zinc-800 text-zinc-300' : 'bg-zinc-100 border-zinc-200 text-zinc-700'"
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md border text-xs font-mono font-medium"
+        :class="store.isDark ? 'bg-[#0b1120] border-emerald-500/30 text-emerald-400' : 'bg-slate-100 border-slate-300 text-slate-700'"
       >
-        <Send class="w-3.5 h-3.5 text-blue-500" /> Direct Contact
+        <Send class="w-3.5 h-3.5 text-emerald-400" /> transmission.open()
       </div>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight" :class="store.isDark ? 'text-zinc-100' : 'text-zinc-900'">
-        Let's Connect
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight" :class="store.isDark ? 'text-slate-100' : 'text-slate-900'">
+        <span class="text-emerald-400">&lt;</span>Contact & Inquiries <span class="text-emerald-400">/&gt;</span>
       </h1>
-      <p class="text-xs sm:text-sm leading-relaxed" :class="store.isDark ? 'text-zinc-400' : 'text-zinc-600'">
-        Whether you have an IT support inquiry, a project collaboration, or a question — send a message below to reach my email directly.
+      <p class="text-xs sm:text-sm leading-relaxed" :class="store.isDark ? 'text-slate-400' : 'text-slate-600'">
+        // Send a message directly to my Gmail inbox via secure cloud payload.
       </p>
     </div>
 
@@ -21,60 +21,60 @@
       <div class="lg:col-span-5 space-y-6">
         <div
           class="p-6 sm:p-8 rounded-2xl border space-y-6 transition-colors"
-          :class="store.isDark ? 'bg-zinc-900/60 border-zinc-800' : 'bg-white border-zinc-200 shadow-xs'"
+          :class="store.isDark ? 'bg-[#0b1120] border-slate-800 shadow-xl' : 'bg-white border-slate-300 shadow-xs'"
         >
-          <h3 class="text-lg font-bold" :class="store.isDark ? 'text-zinc-100' : 'text-zinc-900'">Contact Details</h3>
-          <p class="text-xs leading-relaxed" :class="store.isDark ? 'text-zinc-400' : 'text-zinc-600'">
-            I respond promptly to all client inquiries and technical consultations.
+          <h3 class="text-base font-bold text-emerald-400">// Channel Endpoints</h3>
+          <p class="text-xs leading-relaxed" :class="store.isDark ? 'text-slate-400' : 'text-slate-600'">
+            Direct contact info for project collaborations, technical support contracts, or inquiries.
           </p>
 
-          <div class="space-y-3 text-xs font-mono">
+          <div class="space-y-3 text-xs">
             <div
-              class="flex items-center gap-3 p-3.5 rounded-xl border transition-colors"
-              :class="store.isDark ? 'bg-zinc-950/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'"
+              class="flex items-center gap-3 p-3 rounded-lg border transition-colors"
+              :class="store.isDark ? 'bg-[#050811] border-slate-800' : 'bg-slate-50 border-slate-300'"
             >
-              <div class="w-8 h-8 rounded-lg border flex items-center justify-center"
-                :class="store.isDark ? 'bg-zinc-800 border-zinc-700 text-zinc-300' : 'bg-white border-zinc-200 text-zinc-700'"
+              <div class="w-7 h-7 rounded border flex items-center justify-center"
+                :class="store.isDark ? 'bg-[#0b1120] border-emerald-500/30 text-emerald-400' : 'bg-white border-slate-300 text-slate-700'"
               >
-                <Mail class="w-4 h-4 text-blue-500" />
+                <Mail class="w-3.5 h-3.5 text-emerald-400" />
               </div>
               <div class="truncate">
-                <span class="block text-[10px]" :class="store.isDark ? 'text-zinc-500' : 'text-zinc-400'">Email</span>
-                <a :href="'mailto:' + contactEmail" class="font-semibold hover:text-blue-500 transition-colors" :class="store.isDark ? 'text-zinc-200' : 'text-zinc-800'">
+                <span class="block text-[10px] text-slate-500">// email_address</span>
+                <a :href="'mailto:' + contactEmail" class="font-bold text-emerald-400 hover:underline">
                   {{ contactEmail }}
                 </a>
               </div>
             </div>
 
             <div
-              class="flex items-center gap-3 p-3.5 rounded-xl border transition-colors"
-              :class="store.isDark ? 'bg-zinc-950/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'"
+              class="flex items-center gap-3 p-3 rounded-lg border transition-colors"
+              :class="store.isDark ? 'bg-[#050811] border-slate-800' : 'bg-slate-50 border-slate-300'"
             >
-              <div class="w-8 h-8 rounded-lg border flex items-center justify-center"
-                :class="store.isDark ? 'bg-zinc-800 border-zinc-700 text-zinc-300' : 'bg-white border-zinc-200 text-zinc-700'"
+              <div class="w-7 h-7 rounded border flex items-center justify-center"
+                :class="store.isDark ? 'bg-[#0b1120] border-emerald-500/30 text-emerald-400' : 'bg-white border-slate-300 text-slate-700'"
               >
-                <Phone class="w-4 h-4 text-blue-500" />
+                <Phone class="w-3.5 h-3.5 text-emerald-400" />
               </div>
               <div>
-                <span class="block text-[10px]" :class="store.isDark ? 'text-zinc-500' : 'text-zinc-400'">Phone & Telegram</span>
-                <a :href="'tel:+855963454358'" class="font-semibold hover:text-blue-500 transition-colors" :class="store.isDark ? 'text-zinc-200' : 'text-zinc-800'">
+                <span class="block text-[10px] text-slate-500">// phone_telegram</span>
+                <a :href="'tel:+855963454358'" class="font-bold text-emerald-400 hover:underline">
                   +855 963454358
                 </a>
               </div>
             </div>
 
             <div
-              class="flex items-center gap-3 p-3.5 rounded-xl border transition-colors"
-              :class="store.isDark ? 'bg-zinc-950/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'"
+              class="flex items-center gap-3 p-3 rounded-lg border transition-colors"
+              :class="store.isDark ? 'bg-[#050811] border-slate-800' : 'bg-slate-50 border-slate-300'"
             >
-              <div class="w-8 h-8 rounded-lg border flex items-center justify-center"
-                :class="store.isDark ? 'bg-zinc-800 border-zinc-700 text-zinc-300' : 'bg-white border-zinc-200 text-zinc-700'"
+              <div class="w-7 h-7 rounded border flex items-center justify-center"
+                :class="store.isDark ? 'bg-[#0b1120] border-emerald-500/30 text-emerald-400' : 'bg-white border-slate-300 text-slate-700'"
               >
-                <MapPin class="w-4 h-4 text-blue-500" />
+                <MapPin class="w-3.5 h-3.5 text-emerald-400" />
               </div>
               <div>
-                <span class="block text-[10px]" :class="store.isDark ? 'text-zinc-500' : 'text-zinc-400'">Location</span>
-                <span class="font-semibold" :class="store.isDark ? 'text-zinc-200' : 'text-zinc-800'">
+                <span class="block text-[10px] text-slate-500">// geo_location</span>
+                <span class="font-bold" :class="store.isDark ? 'text-slate-200' : 'text-slate-800'">
                   {{ store.profile.location }}
                 </span>
               </div>
@@ -82,18 +82,18 @@
           </div>
 
           <!-- Social Links Grid -->
-          <div class="pt-3 border-t space-y-2.5" :class="store.isDark ? 'border-zinc-800' : 'border-zinc-100'">
-            <span class="text-[10px] font-mono uppercase tracking-wider" :class="store.isDark ? 'text-zinc-500' : 'text-zinc-400'">Social Networks</span>
+          <div class="pt-3 border-t border-slate-800 space-y-2">
+            <span class="text-[10px] text-slate-500">// social_links</span>
             <div class="flex flex-wrap gap-2">
               <a
                 v-for="soc in store.socialLinks"
                 :key="soc.id"
                 :href="soc.url"
                 target="_blank"
-                class="px-2.5 py-1 rounded-xl border text-xs font-mono transition-colors duration-150 flex items-center gap-1.5"
+                class="px-2.5 py-1 rounded border text-xs transition-colors duration-150 flex items-center gap-1.5"
                 :class="store.isDark
-                  ? 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
-                  : 'bg-zinc-50 border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:border-zinc-300'"
+                  ? 'bg-[#050811] border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40'
+                  : 'bg-slate-100 border-slate-300 text-slate-700 hover:text-slate-900'"
               >
                 {{ soc.platform }} ↗
               </a>
@@ -102,98 +102,105 @@
         </div>
       </div>
 
-      <!-- Contact Message Form -->
+      <!-- Contact Message Form (Coder Terminal Style) -->
       <div class="lg:col-span-7">
         <div
-          class="p-6 sm:p-8 rounded-2xl border space-y-6 transition-colors"
-          :class="store.isDark ? 'bg-zinc-900/60 border-zinc-800' : 'bg-white border-zinc-200 shadow-xs'"
+          class="rounded-2xl border overflow-hidden transition-colors"
+          :class="store.isDark ? 'bg-[#0b1120] border-slate-800 shadow-xl' : 'bg-white border-slate-300 shadow-xs'"
         >
-          <div class="flex items-center justify-between">
-            <h3 class="text-lg font-bold" :class="store.isDark ? 'text-zinc-100' : 'text-zinc-900'">
-              Send a Message
-            </h3>
-            <span class="text-[11px] font-mono flex items-center gap-1" :class="store.isDark ? 'text-zinc-400' : 'text-zinc-500'">
-              <Mail class="w-3 h-3 text-blue-500" /> Direct to Gmail
-            </span>
+          <!-- Terminal Title Header -->
+          <div class="px-4 py-2.5 bg-[#050811] border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <span class="ml-2 text-slate-300 font-bold">send_payload.sh</span>
+            </div>
+            <span class="text-emerald-400 text-[11px]">&gt; direct_to_gmail</span>
           </div>
 
-          <!-- Alert Notification -->
-          <div
-            v-if="statusMessage"
-            class="p-3.5 rounded-xl text-xs font-mono border"
-            :class="isSuccess ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300' : 'bg-red-950/40 border-red-800 text-red-300'"
-          >
-            {{ statusMessage }}
-          </div>
+          <div class="p-6 sm:p-8 space-y-5">
+            <!-- Alert Notification -->
+            <div
+              v-if="statusMessage"
+              class="p-3.5 rounded-lg text-xs font-mono border"
+              :class="isSuccess ? 'bg-emerald-950/50 border-emerald-500/40 text-emerald-400' : 'bg-rose-950/50 border-rose-500/40 text-rose-400'"
+            >
+              {{ statusMessage }}
+            </div>
 
-          <form @submit.prevent="handleSubmit" class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="space-y-1.5">
-                <label class="text-xs font-mono" :class="store.isDark ? 'text-zinc-400' : 'text-zinc-600'">Your Name *</label>
+            <form @submit.prevent="handleSubmit" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1">
+                  <label class="text-xs text-slate-400">const sender_name =</label>
+                  <input
+                    v-model="form.name"
+                    required
+                    type="text"
+                    placeholder='"Your Name"'
+                    class="w-full px-3.5 py-2.5 rounded-lg border text-xs font-mono outline-none transition-colors"
+                    :class="store.isDark ? 'bg-[#050811] border-slate-800 text-emerald-300 focus:border-emerald-500' : 'bg-slate-50 border-slate-300 text-slate-900 focus:border-emerald-500'"
+                  />
+                </div>
+
+                <div class="space-y-1">
+                  <label class="text-xs text-slate-400">const sender_email =</label>
+                  <input
+                    v-model="form.email"
+                    required
+                    type="email"
+                    placeholder='"you@example.com"'
+                    class="w-full px-3.5 py-2.5 rounded-lg border text-xs font-mono outline-none transition-colors"
+                    :class="store.isDark ? 'bg-[#050811] border-slate-800 text-emerald-300 focus:border-emerald-500' : 'bg-slate-50 border-slate-300 text-slate-900 focus:border-emerald-500'"
+                  />
+                </div>
+              </div>
+
+              <div class="space-y-1">
+                <label class="text-xs text-slate-400">const subject =</label>
                 <input
-                  v-model="form.name"
-                  required
+                  v-model="form.subject"
                   type="text"
-                  class="w-full px-3.5 py-2.5 rounded-xl border text-xs font-mono outline-none transition-colors"
-                  :class="store.isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-200 focus:border-blue-500' : 'bg-zinc-50 border-zinc-300 text-zinc-900 focus:border-blue-600'"
+                  placeholder='"IT Support or Web Dev Inquiry"'
+                  class="w-full px-3.5 py-2.5 rounded-lg border text-xs font-mono outline-none transition-colors"
+                  :class="store.isDark ? 'bg-[#050811] border-slate-800 text-emerald-300 focus:border-emerald-500' : 'bg-slate-50 border-slate-300 text-slate-900 focus:border-emerald-500'"
                 />
               </div>
 
-              <div class="space-y-1.5">
-                <label class="text-xs font-mono" :class="store.isDark ? 'text-zinc-400' : 'text-zinc-600'">Your Email *</label>
-                <input
-                  v-model="form.email"
+              <div class="space-y-1">
+                <label class="text-xs text-slate-400">const payload_message =</label>
+                <textarea
+                  v-model="form.message"
                   required
-                  type="email"
-                  class="w-full px-3.5 py-2.5 rounded-xl border text-xs font-mono outline-none transition-colors"
-                  :class="store.isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-200 focus:border-blue-500' : 'bg-zinc-50 border-zinc-300 text-zinc-900 focus:border-blue-600'"
-                />
+                  rows="5"
+                  placeholder='"Write message details here..."'
+                  class="w-full px-3.5 py-2.5 rounded-lg border text-xs font-mono outline-none transition-colors resize-none"
+                  :class="store.isDark ? 'bg-[#050811] border-slate-800 text-emerald-300 focus:border-emerald-500' : 'bg-slate-50 border-slate-300 text-slate-900 focus:border-emerald-500'"
+                ></textarea>
               </div>
-            </div>
 
-            <div class="space-y-1.5">
-              <label class="text-xs font-mono" :class="store.isDark ? 'text-zinc-400' : 'text-zinc-600'">Subject</label>
-              <input
-                v-model="form.subject"
-                type="text"
-                class="w-full px-3.5 py-2.5 rounded-xl border text-xs font-mono outline-none transition-colors"
-                :class="store.isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-200 focus:border-blue-500' : 'bg-zinc-50 border-zinc-300 text-zinc-900 focus:border-blue-600'"
-              />
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="text-xs font-mono" :class="store.isDark ? 'text-zinc-400' : 'text-zinc-600'">Message *</label>
-              <textarea
-                v-model="form.message"
-                required
-                rows="5"
-                class="w-full px-3.5 py-2.5 rounded-xl border text-xs font-mono outline-none transition-colors resize-none"
-                :class="store.isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-200 focus:border-blue-500' : 'bg-zinc-50 border-zinc-300 text-zinc-900 focus:border-blue-600'"
-              ></textarea>
-            </div>
-
-            <div class="space-y-3 pt-2">
-              <button
-                :disabled="submitting"
-                type="submit"
-                class="w-full py-3 rounded-xl font-semibold text-xs font-mono transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98 disabled:opacity-50"
-                :class="store.isDark ? 'bg-white text-zinc-950 hover:bg-zinc-100' : 'bg-zinc-900 text-white hover:bg-zinc-800'"
-              >
-                <Send v-if="!submitting" class="w-4 h-4" />
-                <span>{{ submitting ? 'Sending message...' : 'Send Message' }}</span>
-              </button>
-
-              <div class="text-center">
-                <a
-                  :href="mailtoLink"
-                  class="text-[11px] font-mono hover:underline inline-flex items-center gap-1"
-                  :class="store.isDark ? 'text-zinc-400 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'"
+              <div class="space-y-3 pt-2">
+                <button
+                  :disabled="submitting"
+                  type="submit"
+                  class="w-full py-3 rounded-lg font-bold text-xs font-mono transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  :class="store.isDark ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-lg shadow-emerald-500/20' : 'bg-slate-900 text-emerald-400 hover:bg-slate-800'"
                 >
-                  <Mail class="w-3 h-3" /> Or send directly via Gmail app
-                </a>
+                  <Send v-if="!submitting" class="w-4 h-4" />
+                  <span>{{ submitting ? '$ dispatching payload...' : '$ send_message --to khounvyvy@gmail.com' }}</span>
+                </button>
+
+                <div class="text-center">
+                  <a
+                    :href="mailtoLink"
+                    class="text-[11px] hover:underline inline-flex items-center gap-1 text-slate-400 hover:text-emerald-400"
+                  >
+                    <Mail class="w-3 h-3" /> or click here to open native mailto client
+                  </a>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
 <template>
   <div
-    class="min-h-screen flex flex-col font-sans transition-colors duration-200 selection:bg-blue-600 selection:text-white relative bg-grid-pattern overflow-x-hidden"
-    :class="portfolioStore.isDark ? 'bg-slate-950 text-slate-100 dark' : 'bg-slate-50/70 text-slate-900 light'"
+    class="min-h-screen flex flex-col font-mono transition-colors duration-200 selection:bg-emerald-500 selection:text-slate-950 relative bg-coder-grid overflow-x-hidden"
+    :class="portfolioStore.isDark ? 'bg-[#050811] text-slate-100 dark' : 'bg-slate-50 text-slate-900 light'"
   >
-    <!-- Ambient Radial Background Glows -->
-    <div class="fixed top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-    <div class="fixed bottom-10 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[130px] pointer-events-none -z-10"></div>
+    <!-- Ambient Terminal Matrix Glows -->
+    <div class="fixed top-0 left-1/3 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-10 right-1/4 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[130px] pointer-events-none -z-10"></div>
 
     <Navbar />
 

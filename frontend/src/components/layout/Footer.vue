@@ -1,35 +1,35 @@
 <template>
   <footer
-    class="border-t py-12 transition-colors duration-200"
-    :class="store.isDark ? 'border-zinc-800/80 bg-zinc-950 text-zinc-400' : 'border-zinc-200 bg-zinc-50 text-zinc-600'"
+    class="border-t py-12 transition-colors duration-200 font-mono"
+    :class="store.isDark ? 'border-emerald-500/20 bg-[#050811] text-slate-400' : 'border-slate-200 bg-slate-100 text-slate-600'"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         <!-- Col 1: Bio -->
         <div class="space-y-4 md:col-span-2">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg flex items-center justify-center font-mono font-bold text-xs"
-              :class="store.isDark ? 'bg-white text-zinc-950' : 'bg-zinc-900 text-white'"
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center font-mono font-bold text-xs border"
+              :class="store.isDark ? 'bg-[#0b1120] border-emerald-500/40 text-emerald-400' : 'bg-slate-900 border-slate-800 text-emerald-400'"
             >
-              &lt;/&gt;
+              &gt;_
             </div>
-            <span class="font-bold text-base" :class="store.isDark ? 'text-zinc-100' : 'text-zinc-900'">
-              {{ store.profile.name }}
+            <span class="font-bold text-base font-mono" :class="store.isDark ? 'text-slate-100' : 'text-slate-900'">
+              {{ store.profile.name }}<span class="text-emerald-400">.dev</span>
             </span>
           </div>
-          <p class="text-xs sm:text-sm max-w-md leading-relaxed" :class="store.isDark ? 'text-zinc-400' : 'text-zinc-600'">
-            {{ store.profile.title }}
+          <p class="text-xs max-w-md leading-relaxed" :class="store.isDark ? 'text-slate-400' : 'text-slate-600'">
+            // {{ store.profile.title }}
           </p>
-          <div class="flex items-center gap-2.5 pt-1">
+          <div class="flex items-center gap-2 pt-1">
             <a
               v-for="soc in store.socialLinks"
               :key="soc.id"
               :href="soc.url"
               target="_blank"
-              class="p-2 rounded-xl border transition-colors duration-150"
+              class="p-2 rounded-lg border transition-colors duration-150"
               :class="store.isDark
-                ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
-                : 'bg-white border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:border-zinc-300'"
+                ? 'bg-[#0b1120] border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/40'
+                : 'bg-white border-slate-300 text-slate-600 hover:text-slate-900'"
               :title="soc.platform"
             >
               <Globe v-if="soc.platform === 'Portfolio'" class="w-4 h-4" />
@@ -45,37 +45,37 @@
 
         <!-- Col 2: Quick Links -->
         <div class="space-y-3">
-          <h4 class="text-xs font-mono font-bold uppercase tracking-wider" :class="store.isDark ? 'text-zinc-300' : 'text-zinc-700'">
-            Navigation
+          <h4 class="text-xs font-mono font-bold text-emerald-400">
+            // navigation
           </h4>
           <ul class="space-y-2 text-xs">
-            <li><router-link to="/about" class="hover:text-blue-500 transition-colors">About Me</router-link></li>
-            <li><router-link to="/services" class="hover:text-blue-500 transition-colors">Services</router-link></li>
-            <li><router-link to="/projects" class="hover:text-blue-500 transition-colors">Projects</router-link></li>
-            <li><router-link to="/experience" class="hover:text-blue-500 transition-colors">Experience</router-link></li>
-            <li><router-link to="/certifications" class="hover:text-blue-500 transition-colors">Certifications</router-link></li>
-            <li><router-link to="/blog" class="hover:text-blue-500 transition-colors">Blog</router-link></li>
+            <li><router-link to="/about" class="hover:text-emerald-400 transition-colors">~/about</router-link></li>
+            <li><router-link to="/services" class="hover:text-emerald-400 transition-colors">~/services</router-link></li>
+            <li><router-link to="/projects" class="hover:text-emerald-400 transition-colors">~/projects</router-link></li>
+            <li><router-link to="/experience" class="hover:text-emerald-400 transition-colors">~/experience</router-link></li>
+            <li><router-link to="/certifications" class="hover:text-emerald-400 transition-colors">~/certs</router-link></li>
+            <li><router-link to="/blog" class="hover:text-emerald-400 transition-colors">~/blog</router-link></li>
           </ul>
         </div>
 
         <!-- Col 3: Contact & Direct -->
         <div class="space-y-3">
-          <h4 class="text-xs font-mono font-bold uppercase tracking-wider" :class="store.isDark ? 'text-zinc-300' : 'text-zinc-700'">
-            Contact
+          <h4 class="text-xs font-mono font-bold text-emerald-400">
+            // endpoints
           </h4>
           <ul class="space-y-2 text-xs">
             <li class="flex items-center gap-2">
-              <Mail class="w-3.5 h-3.5 text-zinc-500" />
-              <a :href="'mailto:' + (store.profile.settings?.contact_email || 'khounvyvy@gmail.com')" class="hover:text-blue-500 transition-colors">
+              <Mail class="w-3.5 h-3.5 text-emerald-400" />
+              <a :href="'mailto:' + (store.profile.settings?.contact_email || 'khounvyvy@gmail.com')" class="hover:text-emerald-400 transition-colors">
                 {{ store.profile.settings?.contact_email || 'khounvyvy@gmail.com' }}
               </a>
             </li>
             <li class="flex items-center gap-2">
-              <Phone class="w-3.5 h-3.5 text-zinc-500" />
+              <Phone class="w-3.5 h-3.5 text-emerald-400" />
               <span>{{ store.profile.settings?.contact_phone || '+855 963454358' }}</span>
             </li>
             <li class="flex items-center gap-2">
-              <MapPin class="w-3.5 h-3.5 text-zinc-500" />
+              <MapPin class="w-3.5 h-3.5 text-emerald-400" />
               <span>{{ store.profile.location }}</span>
             </li>
           </ul>
@@ -84,10 +84,10 @@
 
       <div
         class="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono"
-        :class="store.isDark ? 'border-zinc-900 text-zinc-500' : 'border-zinc-200 text-zinc-500'"
+        :class="store.isDark ? 'border-slate-800 text-slate-500' : 'border-slate-200 text-slate-500'"
       >
-        <p>© {{ new Date().getFullYear() }} {{ store.profile.name }}. All Rights Reserved.</p>
-        <div class="flex items-center gap-4 text-[11px] text-zinc-500">
+        <p>/* © {{ new Date().getFullYear() }} {{ store.profile.name }}.dev — system: active */</p>
+        <div class="flex items-center gap-4 text-[11px] text-emerald-400">
           <span>Cambodia 🇰🇭</span>
         </div>
       </div>
