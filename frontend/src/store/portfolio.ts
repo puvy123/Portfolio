@@ -3,10 +3,32 @@ import { ref, computed } from 'vue';
 import type { PortfolioData, Project, Skill, Experience, Education, Certification, Service, BlogPost, Testimonial, Profile, TerminalLog } from '../types';
 import { fetchPortfolioData, fetchBlogPosts, fetchBlogPostBySlug, sendContactForm } from '../services/api';
 
+const CACHE_KEY = 'puvy_portfolio_cache_v4';
+
+function getInitialPortfolioData(): PortfolioData | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    // Clear old legacy keys
+    localStorage.removeItem('puvy_portfolio_cache');
+    localStorage.removeItem('puvy_portfolio_cache_v2');
+    localStorage.removeItem('puvy_portfolio_cache_v3');
+    
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (parsed.projects && parsed.projects.some((p: any) => p.slug === 'nexus-cloud-ops')) {
+      localStorage.removeItem(CACHE_KEY);
+      return null;
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
 export const usePortfolioStore = defineStore('portfolio', () => {
   const loading = ref(false);
-  const cachedData = typeof window !== 'undefined' ? localStorage.getItem('puvy_portfolio_cache') : null;
-  const data = ref<PortfolioData | null>(cachedData ? JSON.parse(cachedData) : null);
+  const data = ref<PortfolioData | null>(getInitialPortfolioData());
   const activeProjectTag = ref<string>('All');
   const activeSkillCategory = ref<string>('All');
   const selectedProject = ref<Project | null>(null);
@@ -321,9 +343,20 @@ export const usePortfolioStore = defineStore('portfolio', () => {
     try {
       const res = await fetchPortfolioData();
       if (res && res.data) {
+        // Filter out any legacy dummy projects
+        const validProjects = res.data.projects?.filter(
+          (p: Project) => p.slug !== 'nexus-cloud-ops' && p.slug !== 'omniflow-project-hub' && p.slug !== 'securegate-api' && p.slug !== 'fieldtech-mobile'
+        ) || [];
+
+        if (validProjects.length > 0) {
+          res.data.projects = validProjects;
+        } else {
+          res.data.projects = DEFAULT_PROJECTS;
+        }
+
         data.value = res.data;
         if (typeof window !== 'undefined') {
-          localStorage.setItem('puvy_portfolio_cache', JSON.stringify(res.data));
+          localStorage.setItem(CACHE_KEY, JSON.stringify(res.data));
         }
       }
     } catch (err) {

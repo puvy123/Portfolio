@@ -32,7 +32,6 @@
         <router-link to="/services" class="hover:text-emerald-400 transition-colors py-1" active-class="text-emerald-400 font-semibold border-b-2 border-emerald-400">Services</router-link>
         <router-link to="/projects" class="hover:text-emerald-400 transition-colors py-1" active-class="text-emerald-400 font-semibold border-b-2 border-emerald-400">Projects</router-link>
         <router-link to="/experience" class="hover:text-emerald-400 transition-colors py-1" active-class="text-emerald-400 font-semibold border-b-2 border-emerald-400">Experience</router-link>
-        <router-link to="/certifications" class="hover:text-emerald-400 transition-colors py-1" active-class="text-emerald-400 font-semibold border-b-2 border-emerald-400">Certifications</router-link>
         <router-link to="/blog" class="hover:text-emerald-400 transition-colors py-1" active-class="text-emerald-400 font-semibold border-b-2 border-emerald-400">Blog</router-link>
         <router-link to="/contact" class="hover:text-emerald-400 transition-colors py-1" active-class="text-emerald-400 font-semibold border-b-2 border-emerald-400">Contact</router-link>
       </nav>
@@ -93,7 +92,6 @@
         <router-link @click="mobileMenuOpen = false" to="/services" class="p-2 rounded hover:text-emerald-400" :class="store.isDark ? 'hover:bg-[#0b1120]' : 'hover:bg-slate-100'">Services</router-link>
         <router-link @click="mobileMenuOpen = false" to="/projects" class="p-2 rounded hover:text-emerald-400" :class="store.isDark ? 'hover:bg-[#0b1120]' : 'hover:bg-slate-100'">Projects</router-link>
         <router-link @click="mobileMenuOpen = false" to="/experience" class="p-2 rounded hover:text-emerald-400" :class="store.isDark ? 'hover:bg-[#0b1120]' : 'hover:bg-slate-100'">Experience</router-link>
-        <router-link @click="mobileMenuOpen = false" to="/certifications" class="p-2 rounded hover:text-emerald-400" :class="store.isDark ? 'hover:bg-[#0b1120]' : 'hover:bg-slate-100'">Certifications</router-link>
         <router-link @click="mobileMenuOpen = false" to="/blog" class="p-2 rounded hover:text-emerald-400" :class="store.isDark ? 'hover:bg-[#0b1120]' : 'hover:bg-slate-100'">Blog</router-link>
         <router-link @click="mobileMenuOpen = false" to="/contact" class="p-2 rounded hover:text-emerald-400" :class="store.isDark ? 'hover:bg-[#0b1120]' : 'hover:bg-slate-100'">Contact</router-link>
       </nav>
