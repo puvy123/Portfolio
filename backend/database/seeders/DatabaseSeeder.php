@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
                 'avatar' => '/profile.jpg',
                 'location' => 'Cambodia, Tnaot Chum 4 Village, Boeung Tumpun Sangkat, Meanchey Khan, Phnom Penh',
                 'cv_url' => '/downloads/puvy-cv.pdf',
-                'experience_years' => 6,
+                'experience_years' => 5,
                 'happy_clients' => 48,
                 'projects_completed' => 54,
                 'technologies_count' => 28,
@@ -94,8 +94,8 @@ class DatabaseSeeder extends Seeder
             ['skill_category_id' => $catFrontend->id, 'name' => 'TypeScript', 'icon' => 'Code', 'proficiency' => 92, 'experience_years' => '4+ yrs', 'is_featured' => true, 'sort_order' => 2],
             ['skill_category_id' => $catFrontend->id, 'name' => 'Tailwind CSS & shadcn/ui', 'icon' => 'Palette', 'proficiency' => 98, 'experience_years' => '4+ yrs', 'is_featured' => true, 'sort_order' => 3],
             ['skill_category_id' => $catFrontend->id, 'name' => 'Element Plus UI', 'icon' => 'Layout', 'proficiency' => 90, 'experience_years' => '4+ yrs', 'is_featured' => true, 'sort_order' => 4],
-            ['skill_category_id' => $catFrontend->id, 'name' => 'JavaScript (ES6+)', 'icon' => 'FileCode2', 'proficiency' => 95, 'experience_years' => '6+ yrs', 'is_featured' => false, 'sort_order' => 5],
-            ['skill_category_id' => $catFrontend->id, 'name' => 'HTML5 / CSS3 / Responsive Design', 'icon' => 'Globe', 'proficiency' => 99, 'experience_years' => '6+ yrs', 'is_featured' => false, 'sort_order' => 6],
+            ['skill_category_id' => $catFrontend->id, 'name' => 'JavaScript (ES6+)', 'icon' => 'FileCode2', 'proficiency' => 95, 'experience_years' => '5+ yrs', 'is_featured' => false, 'sort_order' => 5],
+            ['skill_category_id' => $catFrontend->id, 'name' => 'HTML5 / CSS3 / Responsive Design', 'icon' => 'Globe', 'proficiency' => 99, 'experience_years' => '5+ yrs', 'is_featured' => false, 'sort_order' => 6],
             
             // Backend
             ['skill_category_id' => $catBackend->id, 'name' => 'PHP 8+ & Laravel', 'icon' => 'Server', 'proficiency' => 95, 'experience_years' => '5+ yrs', 'is_featured' => true, 'sort_order' => 1],
@@ -104,10 +104,10 @@ class DatabaseSeeder extends Seeder
             ['skill_category_id' => $catBackend->id, 'name' => 'Node.js & Express', 'icon' => 'Cpu', 'proficiency' => 84, 'experience_years' => '3+ yrs', 'is_featured' => false, 'sort_order' => 4],
 
             // IT Support
-            ['skill_category_id' => $catIT->id, 'name' => 'Hardware & Peripheral Diagnostics', 'icon' => 'Wrench', 'proficiency' => 96, 'experience_years' => '6+ yrs', 'is_featured' => true, 'sort_order' => 1],
-            ['skill_category_id' => $catIT->id, 'name' => 'Windows & Linux SysAdmin', 'icon' => 'Terminal', 'proficiency' => 92, 'experience_years' => '6+ yrs', 'is_featured' => true, 'sort_order' => 2],
+            ['skill_category_id' => $catIT->id, 'name' => 'Hardware & Peripheral Diagnostics', 'icon' => 'Wrench', 'proficiency' => 96, 'experience_years' => '5+ yrs', 'is_featured' => true, 'sort_order' => 1],
+            ['skill_category_id' => $catIT->id, 'name' => 'Windows & Linux SysAdmin', 'icon' => 'Terminal', 'proficiency' => 92, 'experience_years' => '5+ yrs', 'is_featured' => true, 'sort_order' => 2],
             ['skill_category_id' => $catIT->id, 'name' => 'Network Troubleshooting & VLANs', 'icon' => 'Network', 'proficiency' => 88, 'experience_years' => '5+ yrs', 'is_featured' => true, 'sort_order' => 3],
-            ['skill_category_id' => $catIT->id, 'name' => 'Remote Desktop & User Management', 'icon' => 'MonitorPlay', 'proficiency' => 95, 'experience_years' => '6+ yrs', 'is_featured' => false, 'sort_order' => 4],
+            ['skill_category_id' => $catIT->id, 'name' => 'Remote Desktop & User Management', 'icon' => 'MonitorPlay', 'proficiency' => 95, 'experience_years' => '5+ yrs', 'is_featured' => false, 'sort_order' => 4],
             ['skill_category_id' => $catIT->id, 'name' => 'Backup & Disaster Recovery Plans', 'icon' => 'ShieldCheck', 'proficiency' => 90, 'experience_years' => '4+ yrs', 'is_featured' => false, 'sort_order' => 5],
 
             // Databases & Tools

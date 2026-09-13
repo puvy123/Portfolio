@@ -89,7 +89,7 @@ const profileForm = ref({
   about_me_text: '',
   avatar: '',
   location: '',
-  experience_years: 6,
+  experience_years: 5,
   projects_completed: 54,
   happy_clients: 48,
   technologies_count: 28,

@@ -83,7 +83,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
     cv_url: '/downloads/cv.pdf',
     available_for_hire: true,
     stats: {
-      years_exp: '6+ Years',
+      years_exp: '5+ Years',
       projects_completed: '54+ Completed',
       happy_clients: '48+ Clients',
       technologies_count: '28+ Techs',
