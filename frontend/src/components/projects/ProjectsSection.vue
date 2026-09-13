@@ -1,17 +1,19 @@
 <template>
-  <section id="projects" class="py-20 bg-slate-950/50 relative">
+  <section id="projects" class="py-20 relative" :class="store.isDark ? 'bg-[#050811]/60' : 'bg-slate-50/70'">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto space-y-4 mb-14">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs font-semibold">
-          <FolderGit2 class="w-3.5 h-3.5" /> Featured Work
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border font-poppins text-xs font-semibold"
+          :class="store.isDark ? 'bg-[#0b1120] border-emerald-500/30 text-emerald-400' : 'bg-white border-slate-300 text-slate-700 shadow-xs'"
+        >
+          <FolderGit2 class="w-3.5 h-3.5 text-emerald-400" /> Featured Repositories
         </div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-          Portfolio & <span class="gradient-text-cyan-violet">Projects Showcase</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-poppins tracking-tight" :class="store.isDark ? 'text-slate-100' : 'text-slate-900'">
+          Portfolio & <span class="text-emerald-400">Projects Showcase</span>
         </h2>
-        <p class="text-slate-400 text-base">
-          Explore real-world web applications built with Vue 3 TS, Element Plus, Shadcn-vue, Laravel 11, and MySQL.
+        <p class="font-poppins text-sm sm:text-base leading-relaxed" :class="store.isDark ? 'text-slate-400' : 'text-slate-600'">
+          Production e-commerce platforms, retail POS systems, GPS tracking dashboards, and media tools built with Vue 3, TypeScript, and Laravel.
         </p>
       </div>
 
@@ -21,10 +23,10 @@
           v-for="tag in store.projectTags"
           :key="tag"
           @click="store.activeProjectTag = tag"
-          class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold font-mono transition-all"
+          class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold font-poppins transition-all cursor-pointer"
           :class="store.activeProjectTag === tag
-            ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20 scale-105'
-            : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'"
+            ? (store.isDark ? 'bg-emerald-500 text-slate-950 font-bold shadow-lg shadow-emerald-500/20' : 'bg-slate-900 text-emerald-400 font-bold shadow-md')
+            : (store.isDark ? 'bg-[#0b1120] border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30' : 'bg-white border border-slate-300 text-slate-600 hover:text-slate-900 shadow-xs')"
         >
           {{ tag }}
         </button>
@@ -35,23 +37,26 @@
         <div
           v-for="project in store.filteredProjects"
           :key="project.id"
-          class="group rounded-2xl bg-slate-900/80 border border-slate-800/90 overflow-hidden flex flex-col hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-cyan-500/10"
+          class="group rounded-2xl border overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl coder-card"
+          :class="store.isDark
+            ? 'bg-[#0b1120] border-slate-800 hover:border-emerald-500/50 hover:shadow-emerald-500/10'
+            : 'bg-white border-slate-300 hover:border-emerald-500 shadow-sm'"
         >
           <!-- Thumbnail Image Container -->
-          <div class="relative h-48 overflow-hidden bg-slate-950">
+          <div class="relative h-48 overflow-hidden bg-[#050811]">
             <img
               :src="project.thumbnail"
               :alt="project.title"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050811] via-transparent to-transparent opacity-70"></div>
             
             <div class="absolute top-3 right-3 flex items-center gap-2">
               <span
                 v-if="project.is_featured"
-                class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-cyan-500/90 text-slate-950 shadow-md"
+                class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-emerald-500 text-slate-950 shadow-md"
               >
-                ★ Featured
+                ★ FEATURED
               </span>
             </div>
           </div>
@@ -59,10 +64,14 @@
           <!-- Content Body -->
           <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
             <div>
-              <h3 class="text-xl font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">
+              <h3 class="text-lg font-bold font-poppins group-hover:text-emerald-400 transition-colors"
+                :class="store.isDark ? 'text-slate-100' : 'text-slate-900'"
+              >
                 {{ project.title }}
               </h3>
-              <p class="text-slate-400 text-sm mt-2 leading-relaxed line-clamp-2">
+              <p class="text-xs font-poppins mt-2 leading-relaxed line-clamp-2"
+                :class="store.isDark ? 'text-slate-400' : 'text-slate-600'"
+              >
                 {{ project.summary }}
               </p>
             </div>
@@ -72,28 +81,30 @@
               <span
                 v-for="t in project.tags"
                 :key="t"
-                class="px-2.5 py-0.5 rounded-md text-xs font-mono bg-slate-800/90 text-cyan-300 border border-slate-700/60"
+                class="px-2 py-0.5 rounded text-[10px] font-mono border"
+                :class="store.isDark ? 'bg-[#050811] border-emerald-500/20 text-emerald-400' : 'bg-slate-100 border-slate-300 text-slate-700'"
               >
-                {{ t }}
+                #{{ t }}
               </span>
             </div>
 
             <!-- Actions Row -->
-            <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-              <button
-                @click="store.openProjectModal(project)"
-                class="text-xs font-semibold font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1 group-hover:underline"
+            <div class="pt-4 border-t flex items-center justify-between" :class="store.isDark ? 'border-slate-800/80' : 'border-slate-200'">
+              <router-link
+                :to="'/projects/' + project.slug"
+                class="text-xs font-semibold font-poppins text-emerald-400 hover:text-emerald-300 flex items-center gap-1 group-hover:underline"
               >
-                Inspect Details <ExternalLink class="w-3.5 h-3.5" />
-              </button>
+                Details <ExternalLink class="w-3.5 h-3.5" />
+              </router-link>
 
               <div class="flex items-center gap-3">
                 <a
                   v-if="project.github_url"
                   :href="project.github_url"
                   target="_blank"
-                  class="text-slate-400 hover:text-white transition-colors"
-                  title="View GitHub Source"
+                  class="p-1.5 rounded-lg border transition-colors cursor-pointer"
+                  :class="store.isDark ? 'border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50' : 'border-slate-300 text-slate-600 hover:text-slate-950'"
+                  title="View GitHub Repository"
                 >
                   <Github class="w-4 h-4" />
                 </a>
@@ -101,7 +112,8 @@
                   v-if="project.live_url"
                   :href="project.live_url"
                   target="_blank"
-                  class="text-slate-400 hover:text-cyan-400 transition-colors"
+                  class="p-1.5 rounded-lg border transition-colors cursor-pointer"
+                  :class="store.isDark ? 'border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50' : 'border-slate-300 text-slate-600 hover:text-slate-950'"
                   title="View Live Demo"
                 >
                   <Globe class="w-4 h-4" />
@@ -111,6 +123,16 @@
 
           </div>
         </div>
+      </div>
+
+      <!-- View All Projects Button -->
+      <div class="text-center mt-12">
+        <router-link
+          to="/projects"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-poppins font-bold text-xs shadow-lg shadow-emerald-500/20 transition-all hover:scale-105"
+        >
+          <FolderGit2 class="w-4 h-4" /> Explore All GitHub Projects
+        </router-link>
       </div>
 
     </div>
