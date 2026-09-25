@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
                 'cv_url' => '/downloads/puvy-cv.pdf',
                 'experience_years' => 5,
                 'happy_clients' => 48,
-                'projects_completed' => 54,
+                'projects_completed' => 55,
                 'technologies_count' => 28,
                 'available_for_hire' => true,
             ]
@@ -209,8 +209,34 @@ class DatabaseSeeder extends Seeder
         $pCatPOS = ProjectCategory::updateOrCreate(['name' => 'Point of Sale (POS)'], ['slug' => 'pos-systems']);
         $pCatTools = ProjectCategory::updateOrCreate(['name' => 'Tools & Utilities'], ['slug' => 'tools-utilities']);
         $pCatOpenSource = ProjectCategory::updateOrCreate(['name' => 'Open Source & Libraries'], ['slug' => 'open-source']);
+        $pCatAI = ProjectCategory::updateOrCreate(['name' => 'AI & Computer Vision'], ['slug' => 'ai-computer-vision']);
 
         $projects = [
+            [
+                'project_category_id' => $pCatAI->id,
+                'title' => 'FontFinder AI - AI Typography Detector & Google Fonts Matcher',
+                'slug' => 'fontfinder-ai-font-matcher',
+                'summary' => 'Production-ready AI web application to detect fonts from images, crop text via canvas, perform OCR extraction, and match against Google Fonts with similarity scoring and live preview.',
+                'description' => "FontFinder AI is an advanced typography recognition and font identification application. Users can upload images from file, clipboard, or webcam, crop and preprocess text with HTML5 Canvas, extract text using Tesseract OCR with inline editing, and calculate visual match percentages against a comprehensive Google Fonts catalog.\n\nIncludes live custom text previewing with Google Fonts stylesheets, side-by-side font comparison (up to 5 fonts), and 24-hour automatic image retention cleanup.",
+                'thumbnail' => 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=900&q=80',
+                'live_url' => 'https://github.com/puvy123/fontfinderAI',
+                'github_url' => 'https://github.com/puvy123/fontfinderAI',
+                'tags' => ['Next.js 15', 'TypeScript', 'Node.js', 'Express', 'Tesseract OCR', 'Sharp', 'Computer Vision', 'Google Fonts', 'Tailwind CSS'],
+                'features' => [
+                    'Multi-source image input (drag-and-drop, clipboard paste, live camera)',
+                    'HTML5 Canvas image editor with crop, rotate, and contrast adjustment',
+                    'OCR text extraction with confidence scoring and manual editing',
+                    'Multi-factor font matching algorithm (category, weight, width, style, geometry)',
+                    'Interactive live preview modal using dynamic Google Fonts webfonts',
+                    'Side-by-side comparison matrix supporting up to 5 candidate fonts'
+                ],
+                'client' => 'AI & Typography Utility',
+                'start_date' => '2024-07-01',
+                'end_date' => '2024-09-25',
+                'is_featured' => true,
+                'is_published' => true,
+                'sort_order' => 1
+            ],
             [
                 'project_category_id' => $pCatEcommerce->id,
                 'title' => 'Helmet - Motorcycle Helmet Store & E-Commerce System',
@@ -232,7 +258,7 @@ class DatabaseSeeder extends Seeder
                 'end_date' => '2024-08-15',
                 'is_featured' => true,
                 'is_published' => true,
-                'sort_order' => 1
+                'sort_order' => 2
             ],
             [
                 'project_category_id' => $pCatPOS->id,
@@ -255,7 +281,7 @@ class DatabaseSeeder extends Seeder
                 'end_date' => '2024-06-20',
                 'is_featured' => true,
                 'is_published' => true,
-                'sort_order' => 2
+                'sort_order' => 3
             ],
             [
                 'project_category_id' => $pCatWeb->id,
@@ -278,7 +304,7 @@ class DatabaseSeeder extends Seeder
                 'end_date' => '2024-07-30',
                 'is_featured' => true,
                 'is_published' => true,
-                'sort_order' => 3
+                'sort_order' => 4
             ],
             [
                 'project_category_id' => $pCatTools->id,
@@ -301,7 +327,7 @@ class DatabaseSeeder extends Seeder
                 'end_date' => '2024-08-01',
                 'is_featured' => true,
                 'is_published' => true,
-                'sort_order' => 4
+                'sort_order' => 5
             ],
             [
                 'project_category_id' => $pCatWeb->id,
@@ -324,7 +350,7 @@ class DatabaseSeeder extends Seeder
                 'end_date' => '2024-09-01',
                 'is_featured' => true,
                 'is_published' => true,
-                'sort_order' => 5
+                'sort_order' => 6
             ],
             [
                 'project_category_id' => $pCatTools->id,
@@ -347,7 +373,7 @@ class DatabaseSeeder extends Seeder
                 'end_date' => '2024-01-15',
                 'is_featured' => false,
                 'is_published' => true,
-                'sort_order' => 6
+                'sort_order' => 7
             ],
             [
                 'project_category_id' => $pCatPOS->id,
@@ -370,7 +396,7 @@ class DatabaseSeeder extends Seeder
                 'end_date' => '2023-12-10',
                 'is_featured' => false,
                 'is_published' => true,
-                'sort_order' => 7
+                'sort_order' => 8
             ],
             [
                 'project_category_id' => $pCatOpenSource->id,
@@ -392,7 +418,7 @@ class DatabaseSeeder extends Seeder
                 'end_date' => '2023-08-20',
                 'is_featured' => false,
                 'is_published' => true,
-                'sort_order' => 8
+                'sort_order' => 9
             ]
         ];
 

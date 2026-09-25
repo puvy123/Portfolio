@@ -3,7 +3,7 @@ import { ref, computed } from 'vue';
 import type { PortfolioData, Project, Skill, Experience, Education, Certification, Service, BlogPost, Testimonial, Profile, TerminalLog } from '../types';
 import { fetchPortfolioData, fetchBlogPosts, fetchBlogPostBySlug, sendContactForm } from '../services/api';
 
-const CACHE_KEY = 'puvy_portfolio_cache_v4';
+const CACHE_KEY = 'puvy_portfolio_cache_v5';
 
 function getInitialPortfolioData(): PortfolioData | null {
   if (typeof window === 'undefined') return null;
@@ -12,6 +12,7 @@ function getInitialPortfolioData(): PortfolioData | null {
     localStorage.removeItem('puvy_portfolio_cache');
     localStorage.removeItem('puvy_portfolio_cache_v2');
     localStorage.removeItem('puvy_portfolio_cache_v3');
+    localStorage.removeItem('puvy_portfolio_cache_v4');
     
     const raw = localStorage.getItem(CACHE_KEY);
     if (!raw) return null;
@@ -84,7 +85,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
     available_for_hire: true,
     stats: {
       years_exp: '5+ Years',
-      projects_completed: '54+ Completed',
+      projects_completed: '55+ Completed',
       happy_clients: '48+ Clients',
       technologies_count: '28+ Techs',
       code_commits: '3,450+',
@@ -93,6 +94,33 @@ export const usePortfolioStore = defineStore('portfolio', () => {
   });
 
   const DEFAULT_PROJECTS: Project[] = [
+    {
+      id: 9,
+      project_category_id: 6,
+      category: { id: 6, name: 'AI & Computer Vision', slug: 'ai-computer-vision' },
+      title: 'FontFinder AI - AI Typography Detector & Google Fonts Matcher',
+      slug: 'fontfinder-ai-font-matcher',
+      summary: 'Production-ready AI web application to detect fonts from images, crop text via canvas, perform OCR extraction, and match against Google Fonts with similarity scoring and live preview.',
+      description: 'FontFinder AI is an advanced typography recognition and font identification application. Users can upload images from file, clipboard, or webcam, crop and preprocess text with HTML5 Canvas, extract text using Tesseract OCR with inline editing, and calculate visual match percentages against a comprehensive Google Fonts catalog.\n\nIncludes live custom text previewing with Google Fonts stylesheets, side-by-side font comparison (up to 5 fonts), and 24-hour automatic image retention cleanup.',
+      thumbnail: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=900&q=80',
+      live_url: 'https://github.com/puvy123/fontfinderAI',
+      github_url: 'https://github.com/puvy123/fontfinderAI',
+      tags: ['Next.js 15', 'TypeScript', 'Node.js', 'Express', 'Tesseract OCR', 'Sharp', 'Computer Vision', 'Google Fonts', 'Tailwind CSS'],
+      features: [
+        'Multi-source image input (drag-and-drop, clipboard paste, live camera)',
+        'HTML5 Canvas image editor with crop, rotate, and contrast adjustment',
+        'OCR text extraction with confidence scoring and manual editing',
+        'Multi-factor font matching algorithm (category, weight, width, style, geometry)',
+        'Interactive live preview modal using dynamic Google Fonts webfonts',
+        'Side-by-side comparison matrix supporting up to 5 candidate fonts'
+      ],
+      client: 'AI & Typography Utility',
+      start_date: '2024-07-01',
+      end_date: '2024-09-25',
+      is_featured: true,
+      is_published: true,
+      sort_order: 1
+    },
     {
       id: 1,
       project_category_id: 1,
@@ -116,7 +144,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       end_date: '2024-08-15',
       is_featured: true,
       is_published: true,
-      sort_order: 1
+      sort_order: 2
     },
     {
       id: 2,
@@ -141,7 +169,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       end_date: '2024-06-20',
       is_featured: true,
       is_published: true,
-      sort_order: 2
+      sort_order: 3
     },
     {
       id: 3,
@@ -166,7 +194,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       end_date: '2024-07-30',
       is_featured: true,
       is_published: true,
-      sort_order: 3
+      sort_order: 4
     },
     {
       id: 4,
@@ -191,7 +219,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       end_date: '2024-08-01',
       is_featured: true,
       is_published: true,
-      sort_order: 4
+      sort_order: 5
     },
     {
       id: 5,
@@ -216,7 +244,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       end_date: '2024-09-01',
       is_featured: true,
       is_published: true,
-      sort_order: 5
+      sort_order: 6
     },
     {
       id: 6,
@@ -241,7 +269,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       end_date: '2024-01-15',
       is_featured: false,
       is_published: true,
-      sort_order: 6
+      sort_order: 7
     },
     {
       id: 7,
@@ -266,7 +294,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       end_date: '2023-12-10',
       is_featured: false,
       is_published: true,
-      sort_order: 7
+      sort_order: 8
     },
     {
       id: 8,
@@ -290,7 +318,7 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       end_date: '2023-08-20',
       is_featured: false,
       is_published: true,
-      sort_order: 8
+      sort_order: 9
     }
   ];
 
